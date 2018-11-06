@@ -5,7 +5,7 @@
 		// db connection
 		require 'dbh.inc.php';
 		
-		// get user signup input
+		// get user input
 		$username = $_POST['uid'];
 		$email = $_POST['email'];
 		$password = $_POST['pwd'];
@@ -39,7 +39,7 @@
 		}
 		// username already exists
 		else{
-			//use prepared statement to avoid sql injection
+			//use prepared statement to avoid SQL injection
 			$sql = "SELECT userId FROM users WHERE userId=?";
 			$stmt = mysqli_stmt_init($conn);
 			
@@ -81,7 +81,7 @@
 		mysqli_stmt_close($stmt);
 		mysqli_close($conn);
 	} 
-	// else visitor visits page manually, send visitor to signup page
+	// else visitor visits page manually: bounce to signup page
 	else{
 		header("Location: ../signup.php");
 		exit();

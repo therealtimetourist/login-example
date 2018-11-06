@@ -3,12 +3,13 @@
 		// db connection
 		require 'dbh.inc.php';
 		
+		// get userid/password
 		$uid = $_POST['uid'];
 		$password = $_POST['pwd'];
 		
 		// error check
 		if(empty($uid) || empty($password)){
-			header("Location: ../index.php?error=emptyfields");
+			header("Location: ../login.php?error=emptyfields");
 			exit();
 		} else{
 			$sql = "SELECT * FROM users WHERE uid = ? OR email = ?;";
@@ -16,7 +17,7 @@
 			$stmt = mysqli_stmt_init($conn);
 			
 			if(!mysqli_stmt_prepare($stmt, $sql)){
-				header("Location: ../index.php?error=sqlerror");
+				header("Location: ../login.php?error=sqlerror");
 				exit();
 			} else{
 				mysqli_stmt_bind_param($stmt, "ss", $uid, $uid);
@@ -27,7 +28,7 @@
 				if($row = mysqli_fetch_assoc($result)){
 					$pwdCheck = password_verify($password, $row['pwd']);
 					if($pwdCheck == false){
-						header("Location: ../index.php?error=wrongpwd");
+						header("Location: ../login.php?error=passwordcheck");
 						exit();
 					} elseif($pwdCheck == true){
 						// create session
@@ -38,17 +39,17 @@
 						header("Location: ../index.php?login=success");
 						exit();
 					} else{
-						header("Location: ../index.php?error=wrongpwd");
+						header("Location: ../login.php?error=passwordcheck");
 						exit();
 					}
-				 else{
-					header("Location: ../index.php?error=nouser");
+				else{
+					header("Location: ../login.php?error=nouser");
 					exit();
-				 }
+				}
 			}
 		}
 	}
-	// else visitor visits page manually, send visitor to signup page
+	// else visitor visits page manually: bounce to index page
 	else{
 		header("Location: ../index.php");
 		exit();
