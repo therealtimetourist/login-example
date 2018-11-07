@@ -5,7 +5,7 @@
 	<main>
 		<div class="wrapper-main">
 			<?php 
-				if(isset($_SESSION['uid'])){
+				if(isset($_SESSION['userId'])){
 					echo '<p class="login-status">You are logged in</p>';
 				} else{
 					echo '<p class="login-status">You are logged out</p>';

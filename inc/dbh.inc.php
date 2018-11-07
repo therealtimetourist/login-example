@@ -2,7 +2,7 @@
 	$servername = "localhost";
 	$dbuser = "root";
 	$dbpwd = "root";
-	$dbName = "loginsystemtut";
+	$dbName = "cousa";
 	
 	$conn = mysqli_connect($servername, $dbuser, $dbpwd, $dbName);
 	

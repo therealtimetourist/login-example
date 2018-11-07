@@ -5,7 +5,7 @@
 	<main class="container">
 		<?php 
 			// logged in: bounce
-			if(isset($_SESSION['uid'])){
+			if(isset($_SESSION['userId'])){
 				header("Location: ../index.php");
 				exit();
 			} 

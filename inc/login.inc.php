@@ -12,7 +12,7 @@
 			header("Location: ../login.php?error=emptyfields");
 			exit();
 		} else{
-			$sql = "SELECT * FROM users WHERE uid = ? OR email = ?;";
+			$sql = "SELECT * FROM users WHERE userId = ? OR email = ?;";
 			// prepared statement
 			$stmt = mysqli_stmt_init($conn);
 			
@@ -42,6 +42,7 @@
 						header("Location: ../login.php?error=passwordcheck");
 						exit();
 					}
+				}
 				else{
 					header("Location: ../login.php?error=nouser");
 					exit();

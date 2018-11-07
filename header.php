@@ -31,13 +31,9 @@
 							<li><a href="#">Contact</a></li>
 						</ul>
 						
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-						</ul>
-						
 						<?php 
 							// logged in: show log out button
-							if(isset($_SESSION['uid'])){
+							if(isset($_SESSION['userId'])){
 								echo '
 								<div class="header-login navbar-right">
 									<form class="navbar-form navbar-left" action="inc/logout.inc.php" method="POST">
@@ -52,12 +48,15 @@
 								<div class="header-login navbar-right">
 									<form class="navbar-form navbar-left" action="inc/login.inc.php" method="POST">
 										<div class="form-group">
-											<input type="text" name="mailuid" class="form-control" placeholder="username/e-mail...">
+											<input type="text" name="uid" class="form-control" placeholder="username/e-mail...">
 											<input type="password" name="pwd" class="form-control" placeholder="password...">
 										</div>
 										<button type="submit" class="btn btn-default" name="login-submit">Log In</button>
 									</form>
 								</div>
+								<ul class="nav navbar-nav navbar-right">
+									<li><a href="signup.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+								</ul>
 								';
 							}
 						?>
